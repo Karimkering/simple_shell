@@ -123,6 +123,7 @@ char **replace_aliases(char **args)
 	alias_t *temp;
 	int i;
 	char *new_value;
+
 	if (_strcmp(args[0], "alias") == 0)
 		return (args);
 	for (i = 0; args[i]; i++)
