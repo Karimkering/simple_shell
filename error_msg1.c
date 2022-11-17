@@ -31,7 +31,7 @@ char *error_env(char **args)
 		free(hist_str);
 		return (NULL);
 	}
-	
+
 	_strcpy(error, name);
 	_strcat(error, ": ");
 	_strcat(error, hist_str);
@@ -53,16 +53,16 @@ char *error_1(char **args)
 {
 	char *error;
 	int len;
-	len = _strlen(name) + _strlen(args[0]) + 13;
 
+	len = _strlen(name) + _strlen(args[0]) + 13;
 	error = malloc(sizeof(char) * (len + 1));
 	if (!error)
 		return (NULL);
-	
+
 	_strcpy(error, "alias: ");
 	_strcat(error, args[0]);
 	_strcat(error, " not found\n");
-	
+
 	return (error);
 }
 
@@ -76,11 +76,11 @@ char *error_2_exit(char **args)
 {
 	char *error, *hist_str;
 	int len;
-	
+
 	hist_str = _itoa(hist);
 	if (!hist_str)
 		return (NULL);
-	
+
 	len = _strlen(name) + _strlen(hist_str) + _strlen(args[0]) + 27;
 	error = malloc(sizeof(char) * (len + 1));
 	if (!error)
@@ -153,7 +153,7 @@ char *error_2_syntax(char **args)
 	hist_str = _itoa(hist);
 	if (!hist_str)
 		return (NULL);
-	
+
 	len = _strlen(name) + _strlen(hist_str) + _strlen(args[0]) + 33;
 	error = malloc(sizeof(char) * (len + 1));
 	if (!error)

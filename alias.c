@@ -1,14 +1,8 @@
 nclude "shell.h"
 
-
-
 int shellby_alias(char **args, char __attribute__((__unused__)) **front);
-
 void set_alias(char *var_name, char *value);
-
 void print_alias(alias_t *alias);
-
-
 
 /**
  * shellby_alias - Builtin command that either prints all aliases, specific
@@ -38,14 +32,17 @@ int shellby_alias(char **args, char __attribute__((__unused__)) **front)
 	{
 		temp = aliases;
 		value = _strchr(args[i], '=');
-		if (!value)															{
+		if (!value)
+		{
 			while (temp)
-			{																	if (_strcmp(args[i], temp->name) == 0)
+			{
+				if (_strcmp(args[i], temp->name) == 0)
 				{
 					print_alias(temp);
-					break;																
+					break;
 				}
-				temp = temp->next;													}
+				temp = temp->next;
+			}
 			if (!temp)
 				ret = create_error(args + i, 1);
 		}
@@ -67,12 +64,14 @@ void set_alias(char *var_name, char *value)
 	alias_t *temp = aliases;
 	int len, j, k;
 	char *new_value;
+
 	*value = '\0';
 	value++;
 	len = _strlen(value) - _strspn(value, "'\"");
 	new_value = malloc(sizeof(char) * (len + 1));
 	if (!new_value)
 		return;
+
 	for (j = 0, k = 0; value[j]; j++)
 	{
 		if (value[j] != '\'' && value[j] != '"')

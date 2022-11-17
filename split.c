@@ -86,13 +86,13 @@ char **_strtok(char *line, char *delim)
 			free(ptr);
 			return (NULL);
 		}
-	
+
 		for (l = 0; l < letters; l++)
 		{
 			ptr[t][l] = line[index];
 			index++;
 		}
-		
+
 		ptr[t][l] = '\0';
 	}
 	ptr[t] = NULL;

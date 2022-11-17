@@ -48,9 +48,9 @@ char *_itoa(int num)
 	buffer = malloc(sizeof(char) * (len + 1));
 	if (!buffer)
 		return (NULL);
-	
+
 	buffer[len] = '\0';
-	
+
 	if (num < 0)
 	{
 		num1 = num * -1;
@@ -60,14 +60,14 @@ char *_itoa(int num)
 	{
 		num1 = num;
 	}
-	
+
 	len--;
 	do {
 		buffer[len] = (num1 % 10) + '0';
 		num1 /= 10;
 		len--;
 	} while (num1 > 0);
-	
+
 	return (buffer);
 }
 
@@ -81,7 +81,7 @@ char *_itoa(int num)
 int create_error(char **args, int err)
 {
 	char *error;
-	
+
 	switch (err)
 	{
 		case -1:
@@ -104,7 +104,7 @@ int create_error(char **args, int err)
 		error = error_127(args);
 		break;
 	}
-	
+
 	write(STDERR_FILENO, error, _strlen(error));
 	if (error)
 		free(error);

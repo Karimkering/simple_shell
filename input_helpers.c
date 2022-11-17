@@ -52,6 +52,7 @@ char *get_args(char *line, int *exe_ret)
 int call_args(char **args, char **front, int *exe_ret)
 {
 	int ret, index;
+
 	if (!args[0])
 		return (*exe_ret);
 	for (index = 0; args[index]; index++)
@@ -89,9 +90,9 @@ int call_args(char **args, char **front, int *exe_ret)
 			{
 				for (index++; args[index]; index++)
 					free(args[index]);
-				return (ret)					
+				return (ret);
 			}
-		}	
+		}
 		args = replace_aliases(args);
 		ret = run_args(args, front, exe_ret);
 		return (ret);
@@ -109,6 +110,7 @@ int run_args(char **args, char **front, int *exe_ret)
 {
 	int ret, i;
 	int (*builtin)(char **args, char **front);
+
 	builtin = get_builtin(args[0]);
 	if (builtin)
 	{										ret = builtin(args + 1, front);
