@@ -14,6 +14,7 @@ int check_args(char **args);
  * Return: If an error occurs - NULL.
  *         Otherwise - a pointer to the stored command.
  */
+
 char *get_args(char *line, int *exe_ret)
 {
 	size_t n = 0;
@@ -29,6 +30,7 @@ char *get_args(char *line, int *exe_ret)
 	if (read == 1)
 	{
 		hist++;
+
 		if (isatty(STDIN_FILENO))
 			write(STDOUT_FILENO, prompt, 2);
 		return (get_args(line, exe_ret));
@@ -72,6 +74,7 @@ int call_args(char **args, char **front, int *exe_ret)
 			{
 				for (index++; args[index]; index++)
 					free(args[index]);
+
 				return (ret);
 			}
 		}
@@ -81,6 +84,7 @@ int call_args(char **args, char **front, int *exe_ret)
 			args[index] = NULL;
 			args = replace_aliases(args);
 			ret = run_args(args, front, exe_ret);
+
 			if (*exe_ret == 0)
 			{
 				args = &args[++index];
@@ -93,9 +97,11 @@ int call_args(char **args, char **front, int *exe_ret)
 				return (ret);
 			}
 		}
-		args = replace_aliases(args);
-		ret = run_args(args, front, exe_ret);
-		return (ret);
+	}
+	args = replace_aliases(args);
+	ret = run_args(args, front, exe_ret);
+
+	return (ret);
 }
 
 /**
@@ -112,8 +118,10 @@ int run_args(char **args, char **front, int *exe_ret)
 	int (*builtin)(char **args, char **front);
 
 	builtin = get_builtin(args[0]);
+
 	if (builtin)
-	{										ret = builtin(args + 1, front);
+	{
+		ret = builtin(args + 1, front);
 		if (ret != EXIT)
 			*exe_ret = ret;
 	}
@@ -122,7 +130,9 @@ int run_args(char **args, char **front, int *exe_ret)
 		*exe_ret = execute(args, front);
 		ret = *exe_ret;
 	}
+
 	hist++;
+
 	for (i = 0; args[i]; i++)
 		free(args[i]);
 
@@ -166,6 +176,7 @@ int handle_args(int *exe_ret)
 			args[index] = NULL;
 			ret = call_args(args, front, exe_ret);
 			args = &args[++index];
+
 			index = 0;
 		}
 	}
